@@ -1,16 +1,17 @@
-# This is a sample Python script.
+import PySimpleGUI as sg
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+sg.theme('DarkBlack') # Using a dark mode theme for this project
 
+layout = [ [sg.Text('Temporary Screen')],
+           [sg.Button('7'), sg.Button('8'), sg.Button('9'), sg.Button('÷')],
+           [sg.Button('4'), sg.Button('5'), sg.Button('6'), sg.Button('X')],
+           [sg.Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('+')],
+           [sg.Button('0'), sg.Button('.'), sg.Button('C'), sg.Button('-')]]
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+window = sg.Window('Phantastic Calculator', layout)
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED:
+        break
+window.close()
