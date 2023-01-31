@@ -27,60 +27,9 @@ while True:
         keys_entered += event
 
     if event == '=':
-        if '+' in keys_entered:  # Finds if the calculator contains any input of the + sign
-            keyList = keys_entered.split('+')  # Splits the calculator input into a list by the + sign so only numbers remain
-            add = 0
-            for i in range(len(keyList)):
-                add = add + float(keyList[i])  # Using a for loop to sum the numbers in the list
-
-            if add.is_integer():  # Checking if the final result is an integer
-                keys_entered = int(add)  # if integer, then it will adjust the final result to not contain a '.0' after
-            else:
-                keys_entered = add  # Displays the result onto the calculator screen
-
-        elif '-' in keys_entered:  # Finds if the calculator contains any input of the - sign
-            keyList = keys_entered.split('-')  # Splits the calculator input into a list by the - sign so only numbers remain
-            sub = float(keyList[0])
-            for i in range(1, len(keyList)):
-                sub = sub - float(keyList[i])
-
-            if sub.is_integer():
-                keys_entered = int(sub)
-            else:
-                keys_entered = sub
-
-        elif 'x' in keys_entered:  # Finds if the calculator contains any input of the X sign
-            keyList = keys_entered.split('x')  # Splits the calculator input into a list by the X sign so only numbers remain
-            multi = float(keyList[0])
-            for i in range(1, len(keyList)):
-                multi = multi * float(keyList[i])
-
-            if multi.is_integer():
-                keys_entered = int(multi)
-            else:
-                keys_entered = multi
-
-        elif '%' in keys_entered:  # Finds if the calculator contains any input of the % sign
-            keyList = keys_entered.split('%')  # Splits the calculator input into a list by the % sign so only numbers remain
-            mod = float(keyList[0])
-            for i in range(1, len(keyList)):
-                mod = mod % float(keyList[i])
-
-            if mod.is_integer():
-                keys_entered = int(mod)
-            else:
-                keys_entered = mod
-
-        elif '÷' in keys_entered:  # Finds if the calculator contains any input of the ÷ sign
-            keyList = keys_entered.split('÷')  # Splits the calculator input into a list by the ÷ sign so only numbers remain
-            div = float(keyList[0])
-            for i in range(1, len(keyList)):
-                div = div / float(keyList[i])
-
-            if div.is_integer():
-                keys_entered = int(div)
-            else:
-                keys_entered = div
+        keys_enteredFormat = keys_entered.replace('x', '*')  # Replaces the x in the string to a * to make the eval() function work
+        keys_enteredFormatv2 = keys_enteredFormat.replace('÷', '/')  # Replaces the ÷ in the string to a / to make the eval() function work
+        keys_entered = eval(str(keys_enteredFormatv2))  # Calculates the entire string
 
     window['input'].update(keys_entered)  # Updates the calculator screen
 
