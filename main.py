@@ -8,8 +8,8 @@ layout = [[sg.Input(justification='right', font=[30], key='input', size=(5, 5), 
           [sg.Button('¹/x'), sg.Button('x²'), sg.Button('√'), sg.Button('÷', button_color='#FF6666')],
           [sg.Button('7'), sg.Button('8'), sg.Button('9'), sg.Button('x', button_color='#FF6666')],
           [sg.Button('4'), sg.Button('5'), sg.Button('6'), sg.Button('-', button_color='#FF6666')],
-          [sg.Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('+', button_color='#FF6666')],
-          [sg.Button('0', expand_x=True), sg.Button('.'), sg.Button('=', button_color='#FF6666')]]
+          [sg.Button('log'), sg.Button('1'), sg.Button('2'), sg.Button('3'), sg.Button('+', button_color='#FF6666')],
+          [sg.Button('ln'), sg.Button('0', expand_x=True), sg.Button('.'), sg.Button('=', button_color='#FF6666')]]
 
 window = sg.Window('Phantastic Calculator', layout, auto_size_buttons=False,
                    default_button_element_size=(7, 3), element_justification='right',
@@ -41,6 +41,12 @@ while True:
 
     if event == '¹/x':
         keys_entered = 1/int(keys_entered)
+
+    if event == 'log':
+        keys_entered = math.log10(int(keys_entered))
+
+    if event == 'ln':
+        keys_entered = math.log1p(int(keys_entered))
 
     window['input'].update(keys_entered)  # Updates the calculator screen
 
